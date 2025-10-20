@@ -21,7 +21,6 @@
 -   Tailwind
 -	Github Pages
 -   Vitest
--
 
 ---
 
@@ -29,13 +28,41 @@
 
 ### Redegørelse for oprindelsen af evt. tredjeparts kode anvendt i opgaveløsningen (Teknisk dokumentation)
 
-(Hvilke node-pakker har du installeret for at dit projekt virker? Beskriv kort hvilket "problem" hver pakke løser.)
+## NYT API
+
+- Har opsat bruger hos NYT og fået nøgle til deres API. Har lavet en envoirment fil til min API key.
+
+```jsx
+YOUR_API_KEY = "8o4A8yROWNlBDdA5xudbwcQdeUIIGhM8"
+```
+
+- Installeret vite + react, react-routing, sass og tailwind.
+- 
 
 ---
 
 ### Argumentation for de valg du selvstændigt har truffet under løsningen af opgaven
 
-(Hvilke overvejelser har du gjort dig, fx. i forbindelse med dit valg af animationer)
+Har valgt at bruge *React-routing* til at navigere igennem de forskellige sider.
+
+```jsx
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/onboarding" element={<OnBoarding />} />
+        <Route path="/auth" element={<Authentication />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Router>
+  )
+}
+```
 
 ---
 ### Vurdering af egen indsats & gennemførelse af opgaveforløbet (Arbejdsgangen)
