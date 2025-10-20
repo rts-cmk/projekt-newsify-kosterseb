@@ -1,5 +1,5 @@
 import React from 'react';
-import '/archive.sass';
+import './Archive.sass';
 
 export default function Archive() {
     return (

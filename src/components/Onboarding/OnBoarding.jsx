@@ -1,5 +1,5 @@
 import React from 'react';
-import 'onboarding.sass';
+import './OnBoarding.sass';
 
 export default function OnBoarding() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import 'settings.sass';
+import './Settings.sass';
 
 export default function Settings() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import 'popular.sass';
+import './Popular.sass';
 
 export default function Popular() {
     return (

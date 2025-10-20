@@ -1,28 +1,26 @@
 import React from 'react'
-import { useRouter } from './hooks/useRouter.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-const renderRoute = (route) => {
-  switch (route) {
-    case 'home':
-      return <div>Home Component</div>
-    case 'popular':
-      return <div>Popular Component</div>
-    case 'archive':
-      return <div>Archive Component</div>
-    case 'settings':
-      return <div>Settings Component</div>
-    default:
-      return <div>Not Found</div>
-  }
-}
+// Components import
+import Home from './components/Home/Home.jsx'
+import Popular from './components/Popular/Popular.jsx'
+import Archive from './components/Archive/Archive.jsx'
+import Settings from './components/Settings/Settings.jsx'
+import PageNotFound from './components/PageNotFound/PageNotFound.jsx'
 
 function App() {
-
   return (
-    <>
-      <div>test</div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/popular" element={<Popular />} />
+        <Route path="/archive" element={<Archive />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Router>
   )
 }
 
-export default App
+
+      export default App
