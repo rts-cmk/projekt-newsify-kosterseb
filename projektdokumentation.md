@@ -1,8 +1,8 @@
 # Projektdokumentation
 
-**Navn:** 
+**Navn:** Sebastian Aguiar Køster
 
-**Hold:** WUxx
+**Hold:** WU14
 
 **Uddannelse:** Webudvikler
 
@@ -14,11 +14,12 @@
 ## Teknologier
 
 -   HTML
--   CSS
--   JavaScript
--   Webpack
--	Jest
--   ...
+-   Sass
+-   Vite
+-   React
+-   Tailwind
+-	Github Pages
+-   Vitest
 
 ---
 
