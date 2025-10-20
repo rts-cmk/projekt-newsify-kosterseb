@@ -16,7 +16,8 @@
 -   HTML
 -   Sass
 -   Vite
--   React
+-   React (JS)
+-   React Routing
 -   Tailwind
 -	Github Pages
 -   Vitest
