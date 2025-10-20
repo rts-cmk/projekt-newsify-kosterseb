@@ -16,11 +16,11 @@
 -   HTML
 -   Sass
 -   Vite
+-   Vitest
 -   React (JS)
 -   React Routing
 -   Tailwind
 -	Github Pages
--   Vitest
 
 ---
 
