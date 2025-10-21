@@ -19,7 +19,7 @@
 -   Vitest
 -   React (JS)
 -   React Routing
--   Tailwind
+-   API
 -	Github Pages
 
 ---
@@ -36,7 +36,12 @@
 YOUR_API_KEY = "8o4A8yROWNlBDdA5xudbwcQdeUIIGhM8"
 ```
 
-- Installeret vite + react, react-routing, sass og tailwind.
+- Installeret vite + react, react-routing og sass.
+```zsh
+npm create vite@latest .
+npm install react-router
+npm install -D sass
+```
 - 
 
 ---
@@ -64,10 +69,44 @@ function App() {
 }
 ```
 
+Så har jeg også valgt at lave alt seppareret i forhold til mapper. Filstrukturen giver et mere specifikt forhold til arbejdet, så man også kan skabe noget SOC (Sepperation of Concern)
+```zsh
+src/
+├── contexts/
+│   └── DarkModeContext.jsx         
+├── components/
+│   ├── BottomNav/                  
+│   │   ├── BottomNav.jsx
+│   │   └── BottomNav.sass
+│   ├── Splash/
+│   │   ├── SplashScreen.jsx        
+│   │   └── SplashScreen.sass       
+│   ├── Onboarding/
+│   │   ├── OnBoarding.jsx          
+│   │   └── OnBoarding.sass         
+│   ├── Authentication/
+│   │   ├── Authentication.jsx      
+│   │   └── Authentication.sass     
+│   ├── Home/
+│   │   ├── Home.jsx                
+│   │   └── Home.sass               
+│   ├── Archive/
+│   │   ├── Archive.jsx             
+│   │   └── Archive.sass            
+│   ├── Popular/
+│   │   ├── Popular.jsx             
+│   │   └── Popular.sass            
+│   └── Settings/
+│       ├── Settings.jsx            
+│       └── Settings.sass           
+├── App.jsx                         
+└── main.jsx             
+```           
+
 ---
 ### Vurdering af egen indsats & gennemførelse af opgaveforløbet (Arbejdsgangen)
 
-(Hvad gik godt. Hvor prioriterede du forkert. Klagesange fra de varme lande om halvfærdigt produkt, på grund af manglende nattesøvn, fordi din kæle-skildpadde havde tandpine er IKKE interessante.)
+GAG (God Arbejds Gang) er for mig at tilgå opgaven fra det fundementale. Umiddelbart starter jeg med at få installeret alle de redskaber jeg skal bruge og får det opsat så det fungere. Derefter tilgår jeg noget filstruktur som jeg kan forholde mig til igennem hele opgaven, en guideline til mig selv som jeg kan følge for at holde orden i mine filer.
 
 ---
 ### En beskrivelse af særlige punkter til bedømmelse
