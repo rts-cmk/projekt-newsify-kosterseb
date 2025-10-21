@@ -7,8 +7,7 @@ export default function Authentication() {
     const navigate = useNavigate();
 
     const handleAuth = () => {
-        // For now, just navigate to home
-        // Later you can add actual authentication logic
+        // For now, just navigate to home on any auth button click
         navigate('/home');
     };
 
