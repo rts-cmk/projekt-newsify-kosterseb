@@ -1,20 +1,147 @@
 @font-face 
-    font-family: "Playfair Display";
-    src: url('../../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-family: "Playfair Display"
+    src: url('../../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype')
 
-body
-    margin: 0
-    background-color: #FFF
+.onboarding-container
+    display: flex
+    flex-direction: column
+    height: 100vh
+    background-color: #ffffff
+    overflow: hidden
+    transition: background-color 0.3s ease
+
+.onboarding-slides
+    flex: 1
+    overflow: hidden
+    position: relative
+
+.slides-wrapper
+    display: flex
+    height: 100%
+    transition: transform 0.3s ease-in-out
+
+.slide
+    min-width: 100%
+    height: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 50px 0px
+
+.slide-content
+    text-align: center
+    max-width: 300px
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.slide-image
+    width: 100%
+    max-width: 350px
+    height: 250px
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 40px
+    
+    img
+        max-width: 110%
+        max-height: 130%
+        object-fit: contain
 
 h2
     font-family: "Playfair Display", serif
-    font-size: 2.5rem
+    font-size: 2rem
     color: #333
     margin-bottom: 1rem
+    line-height: 1.3
 
 p
     font-family: 'Open Sans', sans-serif
-    font-size: 1.2rem
+    font-size: 1rem
     color: #666
     line-height: 1.6
     margin-bottom: 2rem
+
+.onboarding-controls
+    padding: 30px 20px 40px
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+.progress-dots
+    display: flex
+    justify-content: center
+    gap: 8px
+
+.dot
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    background-color: #d0d0d0
+    transition: all 0.3s ease
+
+    &.active
+        background-color: #4D861F
+        width: 50px
+        border-radius: 5px
+
+.button-group
+    display: flex
+    gap: 15px
+    justify-content: center
+
+button
+    padding: 15px 40px
+    border-radius: 25px
+    font-size: 1rem
+    font-weight: 600
+    cursor: pointer
+    transition: all 0.3s ease
+    border: none
+    font-family: 'Open Sans', sans-serif
+
+.btn-skip
+    background-color: transparent
+    color: #4D861F
+    border: 2px solid #4D861F
+
+    &:hover
+        background-color: rgba(90, 127, 62, 0.1)
+
+.btn-continue
+    background-color: #4D861F
+    color: white
+
+    &:hover
+        background-color: #4a6b32
+
+// Dark mode styles
+body.dark-mode
+    .onboarding-container
+        background-color: #1a1a1a
+
+    h2
+        color: #ffffff
+
+    p
+        color: #b0b0b0
+
+    .btn-skip
+        color: #7fb05c
+        border-color: #7fb05c
+
+        &:hover
+            background-color: rgba(127, 176, 92, 0.1)
+
+    .btn-continue
+        background-color: #7fb05c
+
+        &:hover
+            background-color: #6a9a4d
+
+    .dot
+        background-color: #3a3a3a
+
+        &.active
+            background-color: #7fb05c
