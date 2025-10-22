@@ -106,15 +106,6 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
                 </div>
-
-                {showBookmark && (
-                    <button 
-                        className={`bookmark-btn ${isArchived(article.id) ? 'active' : ''}`}
-                        onClick={handleBookmarkClick}
-                    >
-                        {isArchived(article.id) ? (<img src={ArchiveIcon} alt="Bookmark Icon" />) : (<img src={ArchiveIcon} alt="Bookmark Icon" />)}
-                    </button>
-                )}
             </div>
         </div>
     );
