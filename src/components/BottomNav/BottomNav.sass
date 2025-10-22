@@ -8,6 +8,7 @@
     align-items: center
     background-color: #ffffff
     border-top: 1px solid #e0e0e0
+    box-shadow: 0 -1em 1em rgb(0 0 0 / 10%) 
     padding: 10px 0
     z-index: 1000
     transition: background-color 0.3s ease, border-color 0.3s ease
@@ -26,8 +27,12 @@
 
     .nav-icon
         font-size: 1.5rem
-        opacity: 0.6
         transition: opacity 0.3s ease
+
+        svg
+            width: 24px
+            height: 24px
+            transition: fill 0.3s ease
 
     .nav-label
         font-size: 0.75rem
@@ -35,18 +40,15 @@
         transition: color 0.3s ease
 
     &.active
-        .nav-icon
-            opacity: 1
-            .nav-icon img
-                color: #5a7f3e
-
+        .nav-icon svg
+            color: #5a7f3e
 
         .nav-label
             color: #5a7f3e
             font-weight: 600
 
     &:hover
-        .nav-icon
+        .nav-icon svg
             opacity: 0.8
 
 // Dark mode
@@ -57,7 +59,11 @@ body.dark-mode
 
     .nav-item
         .nav-label
-            color: #b0b0b0
+            color: #c8c6c6
 
-        &.active .nav-label
-            color: #7fb05c
+        &.active
+            .nav-icon svg
+                color: #7fb05c
+
+            .nav-label
+                color: #7fb05c
