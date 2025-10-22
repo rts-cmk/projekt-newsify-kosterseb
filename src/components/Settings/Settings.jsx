@@ -15,8 +15,8 @@ export default function Settings() {
             EUROPE: true,
             HEALTH: true,
             SPORT: true,
-            BUSINESS: false,
-            TRAVEL: true
+            BUSINESS: true,
+            TRAVEL: true,
         };
     });
 
