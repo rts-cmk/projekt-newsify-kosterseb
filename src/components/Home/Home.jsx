@@ -125,7 +125,7 @@ export default function Home() {
                                     <span>{category}</span>
                                 </div>
                                 <span className="expand-icon">
-                                    {expandedCategories.includes(category) ? (<img src={OpenedArrow} alt="closed" />) : (<img src={ClosedArrow} alt="closed" />)}
+                                    {expandedCategories.includes(category) ? (<img className='opened-arrow' src={OpenedArrow} alt="closed" />) : (<img className='closed-arrow' src={ClosedArrow} alt="closed" />)}
                                 </span>
                             </button>
 
