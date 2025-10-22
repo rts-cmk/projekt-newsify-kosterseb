@@ -3,6 +3,10 @@ import { useSwipe } from '../../hooks/useSwipe';
 import { useArchive } from '../../contexts/ArchiveContext';
 import './NewsCard.sass';
 
+//import svg
+import ArchiveIcon from '../../assets/archive-icon.svg';
+import RemoveIcon from '../../assets/remove-icon.svg';
+
 export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookmark = true, showDelete = false }) {
     const [swipeAction, setSwipeAction] = useState(null);
     const { addToArchive, removeFromArchive, isArchived } = useArchive();
@@ -48,8 +52,12 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
     };
 
     const getSwipeIcon = () => {
-        if (swipeDistance > 100) return '🔖';
-        if (swipeDistance < -100) return '🗑️';
+        if (swipeDistance > 100) return (
+            <img className="archive-icon" src={ArchiveIcon} alt="Archive Icon" />
+        );
+        if (swipeDistance < -100) return (
+            <img className="remove-icon" src={RemoveIcon} alt="Remove Icon" />
+        );
         return null;
     };
 
@@ -104,16 +112,7 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
                         className={`bookmark-btn ${isArchived(article.id) ? 'active' : ''}`}
                         onClick={handleBookmarkClick}
                     >
-                        {isArchived(article.id) ? '🔖' : '🔖'}
-                    </button>
-                )}
-
-                {showDelete && (
-                    <button 
-                        className="delete-btn"
-                        onClick={handleDeleteClick}
-                    >
-                        🗑️
+                        {isArchived(article.id) ? (<img src={ArchiveIcon} alt="Bookmark Icon" />) : (<img src={ArchiveIcon} alt="Bookmark Icon" />)}
                     </button>
                 )}
             </div>

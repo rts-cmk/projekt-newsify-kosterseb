@@ -5,9 +5,13 @@ import NewsCard from '../NewsCard/NewsCard';
 import './Archive.sass';
 import logo from '../../assets/logo_small.svg';
 
+//import svg
+import ArchiveIcon from '../../assets/archive-icon.svg';
+
 export default function Archive() {
     const [expandedCategories, setExpandedCategories] = useState([]);
     const { archivedArticles, removeFromArchive } = useArchive();
+    
 
     // Group articles by category
     const groupedArticles = archivedArticles.reduce((acc, article) => {
@@ -50,7 +54,7 @@ export default function Archive() {
             <div className="archive-content">
                 {archivedArticles.length === 0 ? (
                     <div className="empty-archive">
-                        <div className="empty-icon">🔖</div>
+                        <div className="empty-icon"><img src={ArchiveIcon} alt='archive-icon' /></div>
                         <h3>No Saved Articles</h3>
                         <p>Swipe right on articles to save them here</p>
                     </div>
