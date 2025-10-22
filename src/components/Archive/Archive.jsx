@@ -7,6 +7,8 @@ import logo from '../../assets/logo_small.svg';
 
 //import svg
 import ArchiveIcon from '../../assets/archive-icon.svg';
+import OpenedArrow from '/src/assets/opened-arrow.svg';
+import ClosedArrow from '/src/assets/closed-arrow.svg';
 
 export default function Archive() {
     const [expandedCategories, setExpandedCategories] = useState([]);
@@ -71,7 +73,7 @@ export default function Archive() {
                                     <span className="count">({groupedArticles[category].length})</span>
                                 </div>
                                 <span className="expand-icon">
-                                    {expandedCategories.includes(category) ? '∧' : '∨'}
+                                    {expandedCategories.includes(category) ? (<img className='opened-arrow' src={OpenedArrow} alt="closed" />) : (<img className='closed-arrow' src={ClosedArrow} alt="closed" />)}
                                 </span>
                             </button>
 
