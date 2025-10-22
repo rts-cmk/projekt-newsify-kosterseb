@@ -30,10 +30,11 @@
 .search-bar
     padding: 15px 20px
     background-color: #ffffff
+    position: relative
 
     input
         width: 100%
-        padding: 12px 20px
+        padding: 12px 40px 12px 20px
         border: 1px solid #e0e0e0
         border-radius: 8px
         font-family: 'Open Sans', sans-serif
@@ -48,9 +49,53 @@
             outline: none
             border-color: #5a7f3e
 
+    .clear-search
+        position: absolute
+        right: 30px
+        top: 50%
+        transform: translateY(-50%)
+        background: none
+        border: none
+        font-size: 1.2rem
+        color: #999
+        cursor: pointer
+        padding: 5px
+
+        &:hover
+            color: #333
+
+.refresh-indicator
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: #f5f5f5
+    color: #5a7f3e
+    font-family: 'Open Sans', sans-serif
+    font-size: 0.9rem
+    font-weight: 600
+    transition: height 0.3s ease
+    overflow: hidden
+
 .news-content
     flex: 1
     overflow-y: auto
+    -webkit-overflow-scrolling: touch
+
+.loading
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 40px
+    font-family: 'Open Sans', sans-serif
+    color: #666
+    font-size: 1rem
+
+.no-articles
+    padding: 40px 20px
+    text-align: center
+    font-family: 'Open Sans', sans-serif
+    color: #999
+    font-size: 0.95rem
 
 .category-section
     margin-bottom: 10px
@@ -92,63 +137,6 @@
 .news-list
     background-color: #fafafa
 
-.news-card
-    display: flex
-    gap: 15px
-    padding: 15px 20px
-    background-color: #ffffff
-    border-bottom: 1px solid #f0f0f0
-    position: relative
-    transition: background-color 0.2s ease
-
-    &:hover
-        background-color: #f9f9f9
-
-.news-image-placeholder
-    width: 80px
-    height: 80px
-    background-color: #e0e0e0
-    border-radius: 8px
-    flex-shrink: 0
-
-.news-info
-    flex: 1
-    display: flex
-    flex-direction: column
-    gap: 5px
-
-    h3
-        font-family: 'Open Sans', sans-serif
-        font-size: 1rem
-        font-weight: 600
-        color: #333
-        margin: 0
-
-    p
-        font-family: 'Open Sans', sans-serif
-        font-size: 0.85rem
-        color: #666
-        margin: 0
-        line-height: 1.4
-        display: -webkit-box
-        -webkit-line-clamp: 2
-        -webkit-box-orient: vertical
-        overflow: hidden
-
-.bookmark-btn
-    position: absolute
-    right: 15px
-    bottom: 15px
-    background: none
-    border: none
-    font-size: 1.2rem
-    cursor: pointer
-    opacity: 0.6
-    transition: opacity 0.3s ease
-
-    &:hover
-        opacity: 1
-
 // Dark mode
 body.dark-mode
     .home-container
@@ -174,6 +162,19 @@ body.dark-mode
             &:focus
                 border-color: #7fb05c
 
+        .clear-search
+            color: #666
+
+            &:hover
+                color: #ffffff
+
+    .refresh-indicator
+        background-color: #2a2a2a
+        color: #7fb05c
+
+    .loading, .no-articles
+        color: #b0b0b0
+
     .category-header
         background-color: #1a1a1a
         border-bottom-color: #2a2a2a
@@ -189,20 +190,3 @@ body.dark-mode
 
     .news-list
         background-color: #0f0f0f
-
-    .news-card
-        background-color: #1a1a1a
-        border-bottom-color: #2a2a2a
-
-        &:hover
-            background-color: #222
-
-    .news-image-placeholder
-        background-color: #2a2a2a
-
-    .news-info
-        h3
-            color: #ffffff
-
-        p
-            color: #b0b0b0

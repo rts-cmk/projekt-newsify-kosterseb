@@ -1,0 +1,123 @@
+.news-card-wrapper
+    position: relative
+    overflow: hidden
+    transition: background-color 0.3s ease
+
+    &.swiped
+        animation: swipeFlash 0.3s ease
+
+.swipe-icon
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    font-size: 3rem
+    z-index: 1
+    pointer-events: none
+
+.news-card
+    display: flex
+    gap: 15px
+    padding: 15px 20px
+    background-color: #ffffff
+    border-bottom: 1px solid #f0f0f0
+    position: relative
+    transition: transform 0.3s ease, background-color 0.2s ease
+    cursor: grab
+
+    &:active
+        cursor: grabbing
+
+    &:hover
+        background-color: #f9f9f9
+
+.news-image
+    width: 80px
+    height: 80px
+    flex-shrink: 0
+    border-radius: 8px
+    overflow: hidden
+
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.news-image-placeholder
+    width: 100%
+    height: 100%
+    background-color: #e0e0e0
+    border-radius: 8px
+
+.news-info
+    flex: 1
+    display: flex
+    flex-direction: column
+    gap: 5px
+    padding-right: 35px
+
+    h3
+        font-family: 'Open Sans', sans-serif
+        font-size: 1rem
+        font-weight: 600
+        color: #333
+        margin: 0
+        line-height: 1.3
+
+    p
+        font-family: 'Open Sans', sans-serif
+        font-size: 0.85rem
+        color: #666
+        margin: 0
+        line-height: 1.4
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        -webkit-box-orient: vertical
+        overflow: hidden
+
+.bookmark-btn, .delete-btn
+    position: absolute
+    right: 15px
+    bottom: 15px
+    background: none
+    border: none
+    font-size: 1.2rem
+    cursor: pointer
+    opacity: 0.6
+    transition: all 0.3s ease
+    padding: 5px
+
+    &:hover
+        opacity: 1
+        transform: scale(1.2)
+
+    &.active
+        opacity: 1
+        filter: brightness(1.2)
+
+@keyframes swipeFlash
+    0%
+        opacity: 0.8
+    50%
+        opacity: 1
+    100%
+        opacity: 0.8
+
+// Dark mode
+body.dark-mode
+    .news-card
+        background-color: #1a1a1a
+        border-bottom-color: #2a2a2a
+
+        &:hover
+            background-color: #222
+
+    .news-image-placeholder
+        background-color: #2a2a2a
+
+    .news-info
+        h3
+            color: #ffffff
+
+        p
+            color: #b0b0b0
