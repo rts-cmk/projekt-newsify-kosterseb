@@ -1,95 +1,141 @@
-import React, { useState, useEffect } from 'react';
-import { useArchive } from '../../contexts/ArchiveContext';
-import BottomNav from '../BottomNav/BottomNav';
-import NewsCard from '../NewsCard/NewsCard';
-import './Archive.sass';
-import logo from '../../assets/logo_small.svg';
+@font-face 
+    font-family: "Playfair Display"
+    src: url('../../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype')
 
-export default function Archive() {
-    const [expandedCategories, setExpandedCategories] = useState([]);
-    const { archivedArticles, removeFromArchive } = useArchive();
+.archive-container
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    background-color: #ffffff
+    padding-bottom: 80px
+    transition: background-color 0.3s ease
 
-    // Group articles by category
-    const groupedArticles = archivedArticles.reduce((acc, article) => {
-        const category = article.section?.toUpperCase() || 'OTHER';
-        if (!acc[category]) {
-            acc[category] = [];
-        }
-        acc[category].push(article);
-        return acc;
-    }, {});
+.archive-header
+    display: flex
+    align-items: center
+    gap: 10px
+    padding: 20px
+    border-bottom: 1px solid #f0f0f0
 
-    const categories = Object.keys(groupedArticles).sort();
+.archive-logo
+    width: 30px
+    height: auto
 
-    useEffect(() => {
-        // Auto-expand first category
-        if (categories.length > 0 && expandedCategories.length === 0) {
-            setExpandedCategories([categories[0]]);
-        }
-    }, [categories.length]);
+.archive-brand
+    font-family: "Playfair Display", serif
+    font-size: 1.5rem
+    font-weight: bold
+    color: #333
 
-    const toggleCategory = (category) => {
-        setExpandedCategories(prev => 
-            prev.includes(category) 
-                ? prev.filter(c => c !== category)
-                : [...prev, category]
-        );
-    };
+.archive-content
+    flex: 1
+    overflow-y: auto
 
-    const handleDelete = (articleId) => {
-        removeFromArchive(articleId);
-    };
+.empty-archive
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    padding: 60px 40px
+    text-align: center
+    min-height: 400px
 
-    return (
-        <div className="archive-container">
-            <header className="archive-header">
-                <img src={logo} alt="Newsify" className="archive-logo" />
-                <span className="archive-brand">Newsify</span>
-            </header>
+    .empty-icon
+        font-size: 4rem
+        margin-bottom: 20px
+        opacity: 0.5
 
-            <div className="archive-content">
-                {archivedArticles.length === 0 ? (
-                    <div className="empty-archive">
-                        <div className="empty-icon">🔖</div>
-                        <h3>No Saved Articles</h3>
-                        <p>Swipe right on articles to save them here</p>
-                    </div>
-                ) : (
-                    categories.map(category => (
-                        <div key={category} className="category-section">
-                            <button 
-                                className={`category-header ${expandedCategories.includes(category) ? 'expanded' : ''}`}
-                                onClick={() => toggleCategory(category)}
-                            >
-                                <div className="category-title">
-                                    <img src={logo} alt="" className="category-icon" />
-                                    <span>{category}</span>
-                                    <span className="count">({groupedArticles[category].length})</span>
-                                </div>
-                                <span className="expand-icon">
-                                    {expandedCategories.includes(category) ? '∧' : '∨'}
-                                </span>
-                            </button>
+    h3
+        font-family: "Playfair Display", serif
+        font-size: 1.5rem
+        color: #333
+        margin: 0 0 10px 0
 
-                            {expandedCategories.includes(category) && (
-                                <div className="news-list">
-                                    {groupedArticles[category].map(article => (
-                                        <NewsCard
-                                            key={article.id}
-                                            article={article}
-                                            onSwipeLeft={() => handleDelete(article.id)}
-                                            showBookmark={false}
-                                            showDelete={true}
-                                        />
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    ))
-                )}
-            </div>
+    p
+        font-family: 'Open Sans', sans-serif
+        font-size: 1rem
+        color: #666
+        margin: 0
 
-            <BottomNav active="archive" />
-        </div>
-    );
-}
+.category-section
+    margin-bottom: 10px
+
+.category-header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    padding: 15px 20px
+    background-color: #ffffff
+    border: none
+    border-bottom: 1px solid #f0f0f0
+    cursor: pointer
+    transition: background-color 0.3s ease
+
+    &:hover
+        background-color: #f9f9f9
+
+.category-title
+    display: flex
+    align-items: center
+    gap: 10px
+
+    img
+        width: 25px
+        height: auto
+
+    span
+        font-family: 'Open Sans', sans-serif
+        font-size: 1rem
+        font-weight: 600
+        color: #333
+
+    .count
+        font-size: 0.85rem
+        color: #999
+        font-weight: normal
+
+.expand-icon
+    font-size: 1.2rem
+    color: #666
+
+.news-list
+    background-color: #fafafa
+
+// Dark mode
+body.dark-mode
+    .archive-container
+        background-color: #1a1a1a
+
+    .archive-header
+        border-bottom-color: #2a2a2a
+
+    .archive-brand
+        color: #ffffff
+
+    .empty-archive
+        h3
+            color: #ffffff
+
+        p
+            color: #b0b0b0
+
+    .category-header
+        background-color: #1a1a1a
+        border-bottom-color: #2a2a2a
+
+        &:hover
+            background-color: #222
+
+    .category-title
+        span
+            color: #ffffff
+
+        .count
+            color: #666
+
+    .expand-icon
+        color: #b0b0b0
+
+    .news-list
+        background-color: #0f0f0f
