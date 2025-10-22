@@ -6,6 +6,10 @@ import { useArchive } from '../../contexts/ArchiveContext';
 import './Popular.sass';
 import logo from '../../assets/logo_small.svg';
 
+//import arrow svg
+import OpenedArrow from '/src/assets/opened-arrow.svg';
+import ClosedArrow from '/src/assets/closed-arrow.svg';
+
 export default function Popular() {
     const [expandedCategories, setExpandedCategories] = useState(['HEALTH']);
     const [popularNews, setPopularNews] = useState({});
@@ -77,7 +81,7 @@ export default function Popular() {
                                     <span>{category}</span>
                                 </div>
                                 <span className="expand-icon">
-                                    {expandedCategories.includes(category) ? '∧' : '∨'}
+                                    {expandedCategories.includes(category) ? (<img src={OpenedArrow} alt="closed" />) : (<img src={ClosedArrow} alt="closed" />)}
                                 </span>
                             </button>
 
