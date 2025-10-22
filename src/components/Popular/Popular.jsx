@@ -1,44 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import newsApi from '../../services/newsApi';
 import BottomNav from '../BottomNav/BottomNav';
+import NewsCard from '../NewsCard/NewsCard';
+import { useArchive } from '../../contexts/ArchiveContext';
 import './Popular.sass';
 import logo from '../../assets/logo_small.svg';
 
 export default function Popular() {
     const [expandedCategories, setExpandedCategories] = useState(['HEALTH']);
+    const [popularNews, setPopularNews] = useState({});
+    const [loading, setLoading] = useState(true);
+    const { addToArchive } = useArchive();
 
-    const categories = ['HEALTH', 'SPORT', 'TRAVEL'];
-    
-    // Mock popular articles
-    const popularArticles = [
-        {
-            id: 1,
-            category: 'HEALTH',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
-        },
-        {
-            id: 2,
-            category: 'HEALTH',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
-        },
-        {
-            id: 3,
-            category: 'SPORT',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
-        },
-        {
-            id: 4,
-            category: 'TRAVEL',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
+    // Get active categories from localStorage
+    const getActiveCategories = () => {
+        const saved = localStorage.getItem('newsify-categories');
+        const categories = saved ? JSON.parse(saved) : {
+            EUROPE: true,
+            HEALTH: true,
+            SPORT: true,
+            BUSINESS: false,
+            TRAVEL: true
+        };
+        return Object.entries(categories)
+            .filter(([_, isActive]) => isActive)
+            .map(([name]) => name);
+    };
+
+    const activeCategories = getActiveCategories();
+
+    const fetchPopularNews = async () => {
+        setLoading(true);
+        const data = {};
+        
+        // Fetch popular stories (home section for most viewed)
+        for (const category of activeCategories) {
+            const articles = await newsApi.getTopStories(category);
+            data[category] = articles.slice(0, 5); // Show top 5 per category
         }
-    ];
+        
+        setPopularNews(data);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchPopularNews();
+    }, []);
 
     const toggleCategory = (category) => {
         setExpandedCategories(prev => 
@@ -56,36 +63,43 @@ export default function Popular() {
             </header>
 
             <div className="popular-content">
-                {categories.map(category => (
-                    <div key={category} className="category-section">
-                        <button 
-                            className={`category-header ${expandedCategories.includes(category) ? 'expanded' : ''}`}
-                            onClick={() => toggleCategory(category)}
-                        >
-                            <div className="category-title">
-                                <img src={logo} alt="" className="category-icon" />
-                                <span>{category}</span>
-                            </div>
-                            <span className="expand-icon">{expandedCategories.includes(category) ? '∧' : '∨'}</span>
-                        </button>
+                {loading ? (
+                    <div className="loading">Loading popular news...</div>
+                ) : (
+                    Object.entries(popularNews).map(([category, articles]) => (
+                        <div key={category} className="category-section">
+                            <button 
+                                className={`category-header ${expandedCategories.includes(category) ? 'expanded' : ''}`}
+                                onClick={() => toggleCategory(category)}
+                            >
+                                <div className="category-title">
+                                    <img src={logo} alt="" className="category-icon" />
+                                    <span>{category}</span>
+                                </div>
+                                <span className="expand-icon">
+                                    {expandedCategories.includes(category) ? '∧' : '∨'}
+                                </span>
+                            </button>
 
-                        {expandedCategories.includes(category) && (
-                            <div className="news-list">
-                                {popularArticles
-                                    .filter(article => article.category === category)
-                                    .map(article => (
-                                        <div key={article.id} className="news-card">
-                                            <div className="news-image-placeholder"></div>
-                                            <div className="news-info">
-                                                <h3>{article.title}</h3>
-                                                <p>{article.description}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
+                            {expandedCategories.includes(category) && (
+                                <div className="news-list">
+                                    {articles.length === 0 ? (
+                                        <div className="no-articles">No popular articles found</div>
+                                    ) : (
+                                        articles.map(article => (
+                                            <NewsCard
+                                                key={article.id}
+                                                article={article}
+                                                onSwipeRight={() => addToArchive(article)}
+                                                showBookmark={true}
+                                            />
+                                        ))
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    ))
+                )}
             </div>
 
             <BottomNav active="popular" />
