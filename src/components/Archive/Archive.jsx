@@ -1,37 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useArchive } from '../../contexts/ArchiveContext';
 import BottomNav from '../BottomNav/BottomNav';
+import NewsCard from '../NewsCard/NewsCard';
 import './Archive.sass';
 import logo from '../../assets/logo_small.svg';
 
 export default function Archive() {
-    const [expandedCategories, setExpandedCategories] = useState(['SPORT']);
+    const [expandedCategories, setExpandedCategories] = useState([]);
+    const { archivedArticles, removeFromArchive } = useArchive();
 
-    const categories = ['SPORT', 'TRAVEL'];
-    
-    // Mock archived articles
-    const archivedArticles = [
-        {
-            id: 1,
-            category: 'SPORT',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
-        },
-        {
-            id: 2,
-            category: 'SPORT',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
-        },
-        {
-            id: 3,
-            category: 'TRAVEL',
-            title: 'Headline',
-            description: 'Surfing is a surface water sport in which the wave rider, referred to as...',
-            image: null
+    // Group articles by category
+    const groupedArticles = archivedArticles.reduce((acc, article) => {
+        const category = article.section?.toUpperCase() || 'OTHER';
+        if (!acc[category]) {
+            acc[category] = [];
         }
-    ];
+        acc[category].push(article);
+        return acc;
+    }, {});
+
+    const categories = Object.keys(groupedArticles).sort();
+
+    useEffect(() => {
+        // Auto-expand first category
+        if (categories.length > 0 && expandedCategories.length === 0) {
+            setExpandedCategories([categories[0]]);
+        }
+    }, [categories.length]);
 
     const toggleCategory = (category) => {
         setExpandedCategories(prev => 
@@ -39,6 +34,10 @@ export default function Archive() {
                 ? prev.filter(c => c !== category)
                 : [...prev, category]
         );
+    };
+
+    const handleDelete = (articleId) => {
+        removeFromArchive(articleId);
     };
 
     return (
@@ -49,37 +48,45 @@ export default function Archive() {
             </header>
 
             <div className="archive-content">
-                {categories.map(category => (
-                    <div key={category} className="category-section">
-                        <button 
-                            className={`category-header ${expandedCategories.includes(category) ? 'expanded' : ''}`}
-                            onClick={() => toggleCategory(category)}
-                        >
-                            <div className="category-title">
-                                <img src={logo} alt="" className="category-icon" />
-                                <span>{category}</span>
-                            </div>
-                            <span className="expand-icon">{expandedCategories.includes(category) ? '∧' : '∨'}</span>
-                        </button>
-
-                        {expandedCategories.includes(category) && (
-                            <div className="news-list">
-                                {archivedArticles
-                                    .filter(article => article.category === category)
-                                    .map(article => (
-                                        <div key={article.id} className="news-card">
-                                            <div className="news-image-placeholder"></div>
-                                            <div className="news-info">
-                                                <h3>{article.title}</h3>
-                                                <p>{article.description}</p>
-                                            </div>
-                                            <button className="delete-btn">🗑️</button>
-                                        </div>
-                                    ))}
-                            </div>
-                        )}
+                {archivedArticles.length === 0 ? (
+                    <div className="empty-archive">
+                        <div className="empty-icon">🔖</div>
+                        <h3>No Saved Articles</h3>
+                        <p>Swipe right on articles to save them here</p>
                     </div>
-                ))}
+                ) : (
+                    categories.map(category => (
+                        <div key={category} className="category-section">
+                            <button 
+                                className={`category-header ${expandedCategories.includes(category) ? 'expanded' : ''}`}
+                                onClick={() => toggleCategory(category)}
+                            >
+                                <div className="category-title">
+                                    <img src={logo} alt="" className="category-icon" />
+                                    <span>{category}</span>
+                                    <span className="count">({groupedArticles[category].length})</span>
+                                </div>
+                                <span className="expand-icon">
+                                    {expandedCategories.includes(category) ? '∧' : '∨'}
+                                </span>
+                            </button>
+
+                            {expandedCategories.includes(category) && (
+                                <div className="news-list">
+                                    {groupedArticles[category].map(article => (
+                                        <NewsCard
+                                            key={article.id}
+                                            article={article}
+                                            onSwipeLeft={() => handleDelete(article.id)}
+                                            showBookmark={false}
+                                            showDelete={true}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))
+                )}
             </div>
 
             <BottomNav active="archive" />
