@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { useSwipe } from '../../hooks/useSwipe';
 import { useArchive } from '../../contexts/ArchiveContext';
 import './NewsCard.sass';
+import archiveIcon from '../../assets/archive-icon.svg';
+import removeIcon from '../../assets/remove-icon.svg';
 
-//import svg
-import ArchiveIcon from '../../assets/archive-icon.svg';
-import RemoveIcon from '../../assets/remove-icon.svg';
-
-export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookmark = true, showDelete = false }) {
+export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showDelete = false }) {
     const [swipeAction, setSwipeAction] = useState(null);
-    const { addToArchive, removeFromArchive, isArchived } = useArchive();
+    const { removeFromArchive } = useArchive();
     
     const handleSwipeRight = () => {
         if (onSwipeRight) {
@@ -52,27 +50,20 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
     };
 
     const getSwipeIcon = () => {
-        if (swipeDistance > 100) return (
-            <img className="archive-icon" src={ArchiveIcon} alt="Archive Icon" />
-        );
-        if (swipeDistance < -100) return (
-            <img className="remove-icon" src={RemoveIcon} alt="Remove Icon" />
-        );
+        if (swipeDistance > 100) return <img src={archiveIcon} alt="Archive" className="swipe-svg" />;
+        if (swipeDistance < -100) return <img src={removeIcon} alt="Remove" className="swipe-svg" />;
         return null;
-    };
-
-    const handleBookmarkClick = (e) => {
-        e.stopPropagation();
-        if (isArchived(article.id)) {
-            removeFromArchive(article.id);
-        } else {
-            addToArchive(article);
-        }
     };
 
     const handleDeleteClick = (e) => {
         e.stopPropagation();
         removeFromArchive(article.id);
+    };
+
+    const handleCardClick = () => {
+        if (!isSwiping && article.url) {
+            window.open(article.url, '_blank', 'noopener,noreferrer');
+        }
     };
 
     return (
@@ -81,7 +72,15 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
             style={{ backgroundColor: getBackgroundColor() }}
         >
             {isSwiping && getSwipeIcon() && (
-                <div className="swipe-icon">{getSwipeIcon()}</div>
+                <div 
+                    className="swipe-icon" 
+                    style={{
+                        left: swipeDistance > 0 ? '20%' : '80%',
+                        transform: swipeDistance > 0 ? 'translate(-20%, -50%)' : 'translate(-80%, -50%)'
+                    }}
+                >
+                    {getSwipeIcon()}
+                </div>
             )}
             
             <div
@@ -93,6 +92,7 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
+                onClick={handleCardClick}
             >
                 <div className="news-image">
                     {article.image ? (
@@ -106,6 +106,15 @@ export default function NewsCard({ article, onSwipeRight, onSwipeLeft, showBookm
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>
                 </div>
+
+                {showDelete && (
+                    <button 
+                        className="delete-btn"
+                        onClick={handleDeleteClick}
+                    >
+                        <img src={removeIcon} alt="Delete" />
+                    </button>
+                )}
             </div>
         </div>
     );
