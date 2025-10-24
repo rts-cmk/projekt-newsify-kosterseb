@@ -1,0 +1,193 @@
+@font-face 
+    font-family: "Playfair Display"
+    src: url('../../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype')
+
+.settings-container
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    background-color: #ffffff
+    padding-bottom: 80px
+    transition: background-color 0.3s ease
+
+.settings-header
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 10px
+    padding: 20px
+
+.settings-logo
+    width: 30px
+    height: auto
+
+.settings-brand
+    font-family: "Playfair Display", serif
+    font-size: 1.5rem
+    font-weight: bold
+    color: #333
+
+.settings-content
+    flex: 1
+    padding: 20px
+
+.settings-title
+    font-family: "Playfair Display", serif
+    font-size: 2rem
+    color: #5a7f3e
+    text-align: center
+    margin: 0 0 30px 0
+    font-weight: bold
+
+.settings-section
+    margin-bottom: 30px
+
+.section-label
+    font-family: 'Open Sans', sans-serif
+    font-size: 1rem
+    color: #666
+    text-align: center
+    margin: 0 0 20px 0
+    font-weight: normal
+
+.category-list
+    display: flex
+    flex-direction: column
+    gap: 0
+
+.category-item
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px
+    border-bottom: 1px solid #f0f0f0
+
+.category-info
+    display: flex
+    align-items: center
+    gap: 12px
+
+.category-icon
+    width: 25px
+    height: auto
+
+.category-name
+    font-family: 'Open Sans', sans-serif
+    font-size: 1rem
+    color: #333
+    font-weight: 600
+
+.toggle-switch
+    position: relative
+    width: 50px
+    height: 28px
+    display: inline-block
+
+    input
+        opacity: 0
+        width: 0
+        height: 0
+
+        &:checked + .toggle-slider
+            background-color: #5a7f3e
+
+            &:before
+                transform: translateX(22px)
+
+    .toggle-slider
+        position: absolute
+        cursor: pointer
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: #ccc
+        transition: 0.3s
+        border-radius: 28px
+
+        &:before
+            position: absolute
+            content: ""
+            height: 20px
+            width: 20px
+            left: 4px
+            bottom: 4px
+            background-color: white
+            transition: 0.3s
+            border-radius: 50%
+
+.btn-dark-mode, .btn-replay-onboarding
+    width: calc(100% - 40px)
+    max-width: 400px
+    margin: 15px auto
+    padding: 15px
+    border-radius: 25px
+    font-size: 1rem
+    font-weight: 600
+    cursor: pointer
+    transition: all 0.3s ease
+    font-family: 'Open Sans', sans-serif
+    display: block
+    text-align: center
+
+.btn-dark-mode
+    background-color: transparent
+    color: #5a7f3e
+    border: 2px solid #5a7f3e
+
+    &:hover
+        background-color: rgba(90, 127, 62, 0.1)
+
+.btn-replay-onboarding
+    background-color: #5a7f3e
+    color: white
+    border: none
+
+    &:hover
+        background-color: #4a6b32
+
+.version-info
+    text-align: center
+    font-family: 'Open Sans', sans-serif
+    font-size: 0.85rem
+    color: #999
+    margin-top: 20px
+
+// Dark mode
+body.dark-mode
+    .settings-container
+        background-color: #1a1a1a
+
+    .settings-header
+        border-bottom-color: #2a2a2a
+
+    .settings-brand
+        color: #ffffff
+
+    .settings-title
+        color: #7fb05c
+
+    .section-label
+        color: #b0b0b0
+
+    .category-item
+        border-bottom-color: #2a2a2a
+
+    .category-name
+        color: #ffffff
+
+    .toggle-switch input:checked + .toggle-slider
+        background-color: #7fb05c
+
+    .btn-dark-mode
+        color: #7fb05c
+        border-color: #7fb05c
+
+        &:hover
+            background-color: rgba(127, 176, 92, 0.1)
+
+    .btn-replay-onboarding
+        background-color: #7fb05c
+
+        &:hover
+            background-color: #6a9a4d

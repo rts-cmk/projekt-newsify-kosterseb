@@ -1,0 +1,148 @@
+@font-face 
+    font-family: "Playfair Display"
+    src: url('../../assets/fonts/PlayfairDisplay-Regular.ttf') format('truetype')
+
+.auth-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    max-height: 100vh
+    background-color: #ffffff
+    padding: 40px 20px
+    transition: background-color 0.3s ease
+
+.auth-content
+    width: 100%
+    max-width: 400px
+    display: flex
+    flex-direction: column
+    align-items: center
+    
+
+.auth-logo
+    margin-bottom: 20px
+    margin-top: 20px
+    
+    img
+        width: 100px
+        height: auto
+
+.auth-title
+    font-family: "Playfair Display", serif
+    font-size: 2.5rem
+    color: #333
+    margin: 20px 0 10px 0
+    font-weight: bold
+
+.auth-subtitle
+    font-family: 'Open Sans', sans-serif
+    font-size: 1rem
+    color: #666
+    margin: 20px 0 40px 0
+    text-align: center
+
+.auth-buttons
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 15px
+
+.auth-btn
+    width: 100%
+    padding: 15px
+    border-radius: 25px
+    font-size: 1rem
+    font-weight: 600
+    cursor: pointer
+    transition: all 0.3s ease
+    font-family: 'Open Sans', sans-serif
+    border: 2px solid transparent
+
+.auth-facebook, .auth-google
+    background-color: transparent
+    color: #333
+    border: 2px solid #ddd
+
+    &:hover
+        background-color: #f5f5f5
+
+.auth-password
+    background-color: #5a7f3e
+    color: white
+    border: none
+
+    &:hover
+        background-color: #4a6b32
+
+.auth-divider
+    display: flex
+    align-items: center
+    text-align: center
+    margin: 40px
+    
+    &::before,
+    &::after
+        content: ''
+        flex: 1
+        border-bottom: 1px solid #ddd
+    
+    span
+        padding: 0 15px
+        color: #666
+        font-family: 'Open Sans', sans-serif
+        font-size: 0.9rem
+
+.auth-signup
+    text-align: center
+    font-family: 'Open Sans', sans-serif
+    font-size: 0.9rem
+    color: #666
+    margin-top: 10px
+
+    .signup-link
+        color: #5a7f3e
+        font-weight: 600
+        cursor: pointer
+
+        &:hover
+            text-decoration: underline
+
+// Dark mode
+body.dark-mode
+    .auth-container
+        background-color: #1a1a1a
+
+    .auth-title
+        color: #ffffff
+
+    .auth-subtitle
+        color: #b0b0b0
+
+    .auth-facebook, .auth-google
+        background-color: transparent
+        color: #ffffff
+        border-color: #3a3a3a
+
+        &:hover
+            background-color: #2a2a2a
+
+    .auth-password
+        background-color: #7fb05c
+
+        &:hover
+            background-color: #6a9a4d
+
+    .auth-divider
+        &::before,
+        &::after
+            border-color: #3a3a3a
+        
+        span
+            color: #b0b0b0
+
+    .auth-signup
+        color: #b0b0b0
+
+        .signup-link
+            color: #7fb05c
