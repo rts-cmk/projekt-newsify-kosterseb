@@ -320,14 +320,14 @@ Swipe gestures var udfordrende at implementere smooth. Løste det ved at lave en
 **Dark Mode:**
 At få dark mode til at fungere konsistent på tværs af alle komponenter krævede god planlægning. Løste det med Context API og CSS klasser på body elementet.
 
-**Github Pages**
+**Github Pages:**
 Det var lidt sværere at få deployment op og køre, man skulle sætte sig ind i nogle omfattende metoder når man bruger routing og generelt når det er en React app.
 
 ### Hvad Gik Godt
 
 - God struktur fra start gjorde det nemt at tilføje nye features
 - Context API fungerede perfekt til state management
-- Custom hooks gjorde koden genbrugelig og DRY
+- Custom hooks gjorde koden genbrugelig og DRY (Don't Repeat Yourself)
 - Mobile-first approach sikrede god UX på mobile
 
 ### Hvad Kunne Forbedres
