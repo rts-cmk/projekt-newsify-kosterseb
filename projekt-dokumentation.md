@@ -116,6 +116,7 @@ src/
 │   ├── NewsCard/
 │   ├── Splash/
 │   ├── Onboarding/
+│   ├── PageNotFound/
 │   ├── Authentication/
 │   ├── Home/
 │   ├── Archive/
@@ -338,6 +339,7 @@ Det var lidt sværere at få deployment op og køre, man skulle sætte sig ind i
 - Animationer kunne være endnu mere polished
 - Accessibility (ARIA labels, keyboard navigation)
 - Bruger react-router-dom som er deprecated (skal opdateres)
+- Der skal laves noget bedre UX på scroll når der er artikler.
 
 ---
 
