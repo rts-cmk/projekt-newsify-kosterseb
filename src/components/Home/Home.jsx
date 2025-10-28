@@ -5,7 +5,7 @@ import { useSwipe } from '../../hooks/useSwipe';
 import newsApi from '../../services/newsApi';
 import BottomNav from '../BottomNav/BottomNav';
 import NewsCard from '../NewsCard/NewsCard';
-import './Home.sass';
+import './home.sass';
 import logo from '../../assets/logo_small.svg';
 
 //import arrow svg

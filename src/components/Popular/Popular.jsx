@@ -3,7 +3,7 @@ import newsApi from '../../services/newsApi';
 import BottomNav from '../BottomNav/BottomNav';
 import NewsCard from '../NewsCard/NewsCard';
 import { useArchive } from '../../contexts/ArchiveContext';
-import './Popular.sass';
+import './popular.sass';
 import logo from '../../assets/logo_small.svg';
 
 //import arrow svg

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import BottomNav from '../BottomNav/BottomNav';
-import './Settings.sass';
+import './settings.sass';
 import logo from '../../assets/logo_small.svg';
 
 export default function Settings() {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useArchive } from '../../contexts/ArchiveContext';
 import BottomNav from '../BottomNav/BottomNav';
 import NewsCard from '../NewsCard/NewsCard';
-import './Archive.sass';
+import './archive.sass';
 import logo from '../../assets/logo_small.svg';
 
 //import svg

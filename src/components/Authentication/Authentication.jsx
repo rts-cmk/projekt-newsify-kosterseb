@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import './Authentication.sass';
 import logo from '../../assets/logo_large.svg';
 

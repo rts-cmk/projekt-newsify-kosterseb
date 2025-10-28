@@ -8,7 +8,7 @@
 
 **Uddannelsessted:** Roskilde Tekniske Skole
 
-[Link til min applikaton](kosterseb.github.io/newsify-app/)
+[Link til min applikaton](http://example.com/)
 
 ---
 
@@ -116,7 +116,6 @@ src/
 │   ├── NewsCard/
 │   ├── Splash/
 │   ├── Onboarding/
-│   ├── PageNotFound/
 │   ├── Authentication/
 │   ├── Home/
 │   ├── Archive/
@@ -307,9 +306,6 @@ Min tilgang til projektet har været systematisk og struktureret:
 - Lavede de sidste rettelser i dokumentation og components efter feedback.
 - Deployment til github og aflevering af projektet.
 
-**6. Ekstra step**
-- Rettelser og bug fixing.
-
 ### Udfordringer
 
 **API Rate Limiting:**
@@ -321,14 +317,11 @@ Swipe gestures var udfordrende at implementere smooth. Løste det ved at lave en
 **Dark Mode:**
 At få dark mode til at fungere konsistent på tværs af alle komponenter krævede god planlægning. Løste det med Context API og CSS klasser på body elementet.
 
-**Github Pages:**
-Det var lidt sværere at få deployment op og køre, man skulle sætte sig ind i nogle omfattende metoder når man bruger routing og generelt når det er en React app.
-
 ### Hvad Gik Godt
 
 - God struktur fra start gjorde det nemt at tilføje nye features
 - Context API fungerede perfekt til state management
-- Custom hooks gjorde koden genbrugelig og DRY (Don't Repeat Yourself)
+- Custom hooks gjorde koden genbrugelig og DRY
 - Mobile-first approach sikrede god UX på mobile
 
 ### Hvad Kunne Forbedres
@@ -338,8 +331,6 @@ Det var lidt sværere at få deployment op og køre, man skulle sætte sig ind i
 - Bedre error handling ved API fejl
 - Animationer kunne være endnu mere polished
 - Accessibility (ARIA labels, keyboard navigation)
-- Bruger react-router-dom som er deprecated (skal opdateres)
-- Der skal laves noget bedre UX på scroll når der er artikler.
 
 ---
 

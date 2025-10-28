@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './OnBoarding.sass';
+import { useNavigate } from 'react-router';
+import './onboarding.sass';
 import firstImage from '../../assets/first_image.png';
 import secondImage from '../../assets/second_image.png';
 import thirdImage from '../../assets/third_image.png';
