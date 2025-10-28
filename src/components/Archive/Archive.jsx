@@ -7,8 +7,8 @@ import logo from '../../assets/logo_small.svg';
 
 //import svg
 import ArchiveIcon from '../../assets/archive-icon.svg';
-import OpenedArrow from '/src/assets/opened-arrow.svg';
-import ClosedArrow from '/src/assets/closed-arrow.svg';
+import OpenedArrow from '../../assets/opened-arrow.svg';
+import ClosedArrow from '../../assets/closed-arrow.svg';
 
 export default function Archive() {
     const [expandedCategories, setExpandedCategories] = useState([]);

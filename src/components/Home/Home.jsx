@@ -9,8 +9,8 @@ import './Home.sass';
 import logo from '../../assets/logo_small.svg';
 
 //import arrow svg
-import OpenedArrow from '/src/assets/opened-arrow.svg';
-import ClosedArrow from '/src/assets/closed-arrow.svg';
+import OpenedArrow from '../../assets/opened-arrow.svg';
+import ClosedArrow from '../../assets/closed-arrow.svg';
 
 export default function Home() {
     const [expandedCategories, setExpandedCategories] = useState(['HEALTH']);

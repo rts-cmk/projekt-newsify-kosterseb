@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './OnBoarding.sass';
+import firstImage from '../../assets/first_image.png';
+import secondImage from '../../assets/second_image.png';
+import thirdImage from '../../assets/third_image.png';
 
 export default function OnBoarding() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,17 +13,17 @@ export default function OnBoarding() {
 
     const slides = [
         {
-            image: 'src/assets/first_image.png',
+            image: firstImage,
             title: 'Stay Connected, Everywhere, Anytime',
             description: 'Welcome to Newsify, your ultimate destination for breaking news, exclusive stories, and tailored content.'
         },
         {
-            image: 'src/assets/second_image.png',
+            image: secondImage,
             title: 'Become a Savvy Global Citizen.',
             description: 'Discover tailored news that aligns with your interests and preferences. Your personalized news journey awaits!'
         },
         {
-            image: 'src/assets/third_image.png',
+            image: thirdImage,
             title: 'Enhance your News Journey Now!',
             description: 'Be part of our dynamic community and contribute your insights and participate in enriching conversations.'
         }

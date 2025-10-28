@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { DarkModeProvider } from './contexts/DarkModeContext'
-import { ArchiveProvider } from './contexts/ArchiveContext'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { DarkModeProvider } from './contexts/DarkModeContext.jsx'
+import { ArchiveProvider } from './contexts/ArchiveContext.jsx'
 
 // Components import
 import Home from './components/Home/Home.jsx'
