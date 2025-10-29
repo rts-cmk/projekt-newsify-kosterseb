@@ -460,13 +460,13 @@ At få dark mode til at fungere konsistent på tværs af alle komponenter kræve
 
 - God struktur fra start gjorde det nemt at tilføje nye features
 - Context API fungerede perfekt til state management
-- Custom hooks gjorde koden genbrugelig og DRY
+- Custom hooks gjorde koden genbrugelig og DRY (Don't Repeat Yourself)
 - Mobile-first approach sikrede god UX på mobile
 
 ### Hvad Kunne Forbedres
 
-- Kunne have lavet unit tests med Vitest
-- Offline funktionalitet med Service Workers
+- Kunne have lavet flere unit tests med Vitest
+- Mere UX forberding, med mere smooth touch accebility
 - Bedre error handling ved API fejl
 - Animationer kunne være endnu mere polished
 - Accessibility (ARIA labels, keyboard navigation)
@@ -542,7 +542,7 @@ Har lavet en smooth animation sequence på splash screen:
 
 ### 4. Smart localStorage Integration
 
-Bruger localStorage smart til at gemme user preferences og data. Alle Context providers loader initial state fra localStorage og gemmer automatisk ved ændringer.
+Bruger localStorage til at gemme user preferences og data. Alle Context providers loader initial state fra localStorage og gemmer automatisk ved ændringer.
 
 ```jsx
 const [archivedArticles, setArchivedArticles] = useState(() => {
@@ -579,10 +579,12 @@ Koden er meget velorganiseret med:
 
 Projektet har været en god læringsoplevelse hvor jeg har arbejdet med moderne React patterns og best practices. Jeg er særligt stolt af swipe gestures implementationen og den overordnede code struktur. Appen føles smooth og native på mobile enheder, hvilket var målet fra start.
 
+Vitest var også en god læring, da jeg selv via min egen kode fik en forståelse for hvordan man kan bruge redskabet i forskellige situationer.
+
 **Teknisk niveau:** Har brugt avancerede React concepts som Context API, custom hooks, og lifecycle management. God forståelse for state management og data flow.
 
 **Design:** Mobile-first approach med fokus på UX. Smooth animationer og transitions. Konsistent design system med dark mode support.
 
-**Code Quality:** Ren og velstruktureret kode med god separation of concerns. Genbrugelige komponenter og DRY princippet. God dokumentation i koden.
+**Code Quality:** Ren og velstruktureret kode med god separation of concerns. Genbrugelige komponenter, DRY princippet og selvfølgelig pseudo-dokumentation i koden.
 
 ---
