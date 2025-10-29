@@ -46,6 +46,5 @@ describe('useSwipe', () => {
         expect(onSwipeRight).toHaveBeenCalled();
         expect(onSwipeLeft).not.toHaveBeenCalled();
       });
-      
 }
 );

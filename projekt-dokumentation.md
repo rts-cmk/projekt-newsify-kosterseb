@@ -251,6 +251,100 @@ export const usePullToRefresh = (onRefresh, threshold = 80) => {
 };
 ```
 
+### Test af `useSwipe`-hook med Vitest ###
+
+Her bruges *`Vitest`* og *`react-testing`* for at bekræfte at `useSwipe` reagerer korrekt på, hvor langt der bliver trukket, før funktionen aktiveres, ved at observere rendering.
+
+Jeg bruger her de forskellige test-calls til at afklare, hvilke parametre jeg vil teste:
+- it: Her beskriver jeg hvad jeg tester.
+- act: Bruges til at simulere brugerinteraktion (fra et UX-perspektiv) og se, om funktionen reagerer korrekt.
+- expect: Bruges til at definere, hvad vi forventer skal ske og verificere om kravene bliver opfyldt.
+
+Det er vigtigt, at vi altid refererer til det output, den rigtige fil faktisk eksporterer.
+
+```js
+import React from 'react';
+import { renderHook, act } from '@testing-library/react';
+import { useSwipe } from './useSwipe';
+import { describe, it, expect, vi } from 'vitest';
+import "@testing-library/jest-dom/vitest";
+
+describe('useSwipe', () => {
+    it('should detect left swipe', () => {
+        const onSwipeLeft = vi.fn();
+        const onSwipeRight = vi.fn();
+        const { result } = renderHook(() => useSwipe(onSwipeLeft, onSwipeRight, 50));
+
+        act(() => {
+            result.current.handleTouchStart({ targetTouches: [{ clientX: 200 }] });
+        });
+
+        act(() => {
+            result.current.handleTouchMove({ targetTouches: [{ clientX: 100 }] });
+        });
+
+        act(() => {
+            result.current.handleTouchEnd();
+        });
+
+        expect(onSwipeLeft).toHaveBeenCalled();
+        expect(onSwipeRight).not.toHaveBeenCalled();
+    })
+
+    it('should detect right swipe', () => {
+        const onSwipeLeft = vi.fn();
+        const onSwipeRight = vi.fn();
+        const { result } = renderHook(() => useSwipe(onSwipeLeft, onSwipeRight, 50));
+      
+        act(() => {
+          result.current.handleTouchStart({ targetTouches: [{ clientX: 100 }] });
+        });
+      
+        act(() => {
+          result.current.handleTouchMove({ targetTouches: [{ clientX: 200 }] });
+        });
+      
+        act(() => {
+          result.current.handleTouchEnd();
+        });
+      
+        expect(onSwipeRight).toHaveBeenCalled();
+        expect(onSwipeLeft).not.toHaveBeenCalled();
+      });
+      
+}
+);
+
+```
+## Hvis alle tests består, får vi denne besked i terminalen: ##
+
+```zsh
+✓ src/hooks/useSwipe.test.js (2 tests) 10ms
+   ✓ useSwipe > should detect left swipe 8ms
+   ✓ useSwipe > should detect right swipe 1ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  10:33:11
+   Duration  72ms
+
+ PASS  Waiting for file changes...
+```
+
+Dette hjælper os med at identificere, om noget fungerer korrekt og hvis ikke, får vi direkte feedback i terminalen.
+
+Et konkret og lidt mere abstrakt eksempel på, hvordan testen afslører fejl, er her:
+```js
+act(() => {
+            result.current.handleTouchStart({ targetTouches: [{ clientX: 200 }] });
+        });
+```
+Det vigtigste her er værdien `clientX: 200`.
+Jeg fandt ud af, at jeg kunne hæve værdien helt op til fx clientX: 1200, og testen ville stadig `PASS` — hvilket egentlig ikke var hensigten.
+Det afslørede en logisk fejl i min kode, selvom testen teknisk set bestod.
+
+På den måde kan tests virke abstrakte, men stadig give værdifuld indsigt i, hvordan funktionaliteten faktisk opfører sig i praksis.
+
 ### 5. localStorage til Data Persistence
 
 Bruger localStorage til at gemme brugerens præferencer og data lokalt i browseren:
